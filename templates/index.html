@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+</head>
+<body>
+    <h1>My Portfolio</h1>
+    <u1>
+        {% for project in projects %}
+        <li>{{ project[0] }}: {{ project[1] }}</li>
+    </u1>
+</body>
+</html>
