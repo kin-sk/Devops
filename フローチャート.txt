@@ -8,6 +8,18 @@ portfolio-site/
 └── requirements.txt   # 必要なパッケージリスト
 
 
+portfolio-site/
+├── app/
+│   ├── static/        # 静的ファイル (CSS, JS, 画像など)
+│   ├── templates/     # HTMLテンプレート
+│   ├── app.py         # メインアプリケーション
+├── db/
+│   └── database.db    # SQLiteデータベース
+├── config.json         # 設定ファイル
+├── requirements.txt    # 必要なパッケージ
+
+
+
 機能案として
 ・自己紹介ページ：プロフィールやスキル紹介
 ・プロジェクト一覧：プロジェクト作品の情報やデータベースから取得し、一覧表示

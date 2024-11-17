@@ -96,6 +96,7 @@ def add_user():
                 (name, profile, email, phone))
     return jsonify({"message": "ユーザーを追加しました"})
 
+
 # アプリケーション開始
 if __name__ == "__main__":
     db_path = get_database_path()
