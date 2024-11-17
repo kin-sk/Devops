@@ -6,10 +6,28 @@
     <title>Portfolio</title>
 </head>
 <body>
-    <h1>My Portfolio</h1>
-    <u1>
+    <h1>Portfolio</h1>
+    <h2>Users</h2>
+    <ul>
+        {% for user in users %}
+        <li>{{ user.name }} - {{ user.profile }} ({{ user.email }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Projects</h2>
+    <ul>
         {% for project in projects %}
-        <li>{{ project[0] }}: {{ project[1] }}</li>
-    </u1>
+        <li>{{ project.title }}: {{ project.description }} ({{ project.technologies }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add User</h2>
+    <form action="/add-user" method="post">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="profile" placeholder="Profile" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="phone" placeholder="Phone">
+        <button type="submit">Add User</button>
+    </form>
 </body>
 </html>

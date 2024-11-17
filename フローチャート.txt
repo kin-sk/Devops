@@ -36,3 +36,41 @@ portfolio-site/
 ４．ロジックを実装
 ・Flaskアプリでルーティングを設定し、各ページをローカルで動作するようにする
 
+
+
+
+データベーススキーマ
+
+ER図
+User (1) ------ (N) Projects
+User (1) ------ (N) Skills
+
+
+テーブル設計
+１．usersテーブル
+・id：ユーザーID（主キー）
+・name：名前
+・profile：プロフィールテキスト
+・email：メールアドレス
+・phone：電話番号
+
+２．projectsテーブル
+・id：プロジェクトID（主キー）
+・user_id：ユーザーID（外部キー、users.idと関連付け）
+・title：プロジェクトタイトル
+・description：説明
+・url：プロジェクトURL
+・technologies：使用技術（例：Python，Flask）
+
+３．skillsテーブル
+・id：スキルID（主キー）
+・user_id：ユーザーID（外部キー、users.idと関連付け）
+・name：スキル名
+・level：レベル（例：初級、中級、上級）
+
+４．contactsテーブル
+・id：メッセージID（主キー）
+・name：送信者名
+・email：送信者メールアドレス
+・message：メッセージ内容
+
