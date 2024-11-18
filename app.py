@@ -81,24 +81,11 @@ def insert_data(query, params):
 # ルート: ホームページ
 @app.route("/")
 def home():
-    users = get_data_from_db("SELECT * FROM users")
-    projects = get_data_from_db("SELECT * FROM projects")
-    return render_template("index.html", users=users, projects=projects)
+    projects = [
+        {"title": "Project 1", "description": "This is project 1", "image_url": "/static/images/project1.jpg"},
+        {"title": "Project 2", "description": "This is project 2", "image_url": "/static/images/project2.jpg"}
+    ]
+    return render_template("index.html", projects=projects)
 
-# ユーザー追加フォーム
-@app.route("/add-user", methods=["POST"])
-def add_user():
-    name = request.form["name"]
-    profile = request.form["profile"]
-    email = request.form["email"]
-    phone = request.form["phone"]
-    insert_data("INSERT INTO users (name, profile, email, phone) VALUES (?, ?, ?, ?)",
-                (name, profile, email, phone))
-    return jsonify({"message": "ユーザーを追加しました"})
-
-
-# アプリケーション開始
 if __name__ == "__main__":
-    db_path = get_database_path()
-    initialize_database(db_path)
     app.run(debug=True)
