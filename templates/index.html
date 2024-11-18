@@ -1,33 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-</head>
-<body>
-    <h1>Portfolio</h1>
-    <h2>Users</h2>
-    <ul>
-        {% for user in users %}
-        <li>{{ user.name }} - {{ user.profile }} ({{ user.email }})</li>
-        {% endfor %}
-    </ul>
+{% extends "base.html" %}
 
-    <h2>Projects</h2>
-    <ul>
-        {% for project in projects %}
-        <li>{{ project.title }}: {{ project.description }} ({{ project.technologies }})</li>
-        {% endfor %}
-    </ul>
+{% block title %}Home{% endblock %}
 
-    <h2>Add User</h2>
-    <form action="/add-user" method="post">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="text" name="profile" placeholder="Profile" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="text" name="phone" placeholder="Phone">
-        <button type="submit">Add User</button>
-    </form>
-</body>
-</html>
+{% block content %}
+    <section>
+        <h2>Welcome to My Portfolio</h2>
+        <p>Explore my projects and get to know more about me!</p>
+    </section>
+
+    <section>
+        <h3>Featured Projects</h3>
+        <ul>
+            {% for project in projects %}
+                <li>
+                    <h4>{{ project.title }}</h4>
+                    <p>{{ project.description }}</p>
+                    <a href="{{ project.url }}" target="_blank">View Project</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

@@ -19,6 +19,23 @@ portfolio-site/
 ├── requirements.txt    # 必要なパッケージ
 
 
+portfolio-site/
+├── app/
+│   ├── static/        # 静的ファイル (CSS, JS, 画像など)
+│   │   ├── css/
+│   │   │   └── styles.css
+│   │   ├── js/
+│   │   │   └── scripts.js
+│   │   └── images/    # 画像ファイル
+│   ├── templates/     # HTMLテンプレート
+│   │   ├── base.html
+│   │   └── index.html
+│   ├── app.py         # Flaskアプリケーション
+├── db/
+│   └── database.db    # SQLiteデータベース
+├── config.json         # 設定ファイル
+├── requirements.txt    # 必要なパッケージ
+
 
 機能案として
 ・自己紹介ページ：プロフィールやスキル紹介
