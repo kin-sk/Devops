@@ -3,13 +3,6 @@ import sqlite3
 import os
 import json
 
-app = Flask(__name__)
-
-from flask import Flask, render_template, request, jsonify
-import sqlite3
-import os
-import json
-
 # Flaskアプリの初期化
 app = Flask(__name__)
 
