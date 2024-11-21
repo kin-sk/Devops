@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 import os
 import json
@@ -6,11 +6,27 @@ import json
 # Flaskアプリの初期化
 app = Flask(__name__)
 
+# JSONファイルのパス
+DATA_FILE = "data.json"
+
 # 設定をJSONから読み込む
 def load_config():
     with open("config.json", "r") as file:
         return json.load(file)
 
+# 設定をJSONから読み込む
+def load_data(file_path="data.json"):
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return {"projects": []}
+
+# JSONに書き込む
+def save_data(data, file_path="data.json"):
+    with open(file_path, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, ensure_ascii=False)
+        
 # データベースパスを取得
 def get_database_path(env="development"):
     config = load_config()
@@ -71,14 +87,38 @@ def insert_data(query, params):
     connection.commit()
     connection.close()
 
-# ルート: ホームページ
+# ユーティリティ関数
+def load_data(file_path=DATA_FILE):
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return {"projects": []}
+
+def save_data(data, file_path=DATA_FILE):
+    with open(file_path, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, ensure_ascii=False)
+
+# ホームページ
 @app.route("/")
 def home():
-    projects = [
-        {"title": "Project 1", "description": "This is project 1", "image_url": "/static/images/project1.jpg"},
-        {"title": "Project 2", "description": "This is project 2", "image_url": "/static/images/project2.jpg"}
-    ]
-    return render_template("index.html", projects=projects)
+    data = load_data()
+    return render_template("index.html", projects=data["projects"])
+
+# プロジェクトの追加
+@app.route("/add", methods=["GET", "POST"])
+def add_project():
+    if request.method == "POST":
+        new_project = {
+            "title": request.form["title"],
+            "description": request.form["description"],
+            "image_url": request.form["image_url"]
+        }
+        data = load_data()
+        data["projects"].append(new_project)
+        save_data(data)
+        return redirect(url_for("home"))
+    return render_template("add_project.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
