@@ -20,7 +20,7 @@ def load_data(file_path="data.json"):
         with open(file_path, "r", encoding="utf-8") as file:
             return json.load(file)
     except FileNotFoundError:
-        return {"projects": []}
+        return {"profile": {}, "projects": []}
 
 # JSONに書き込む
 def save_data(data, file_path="data.json"):
@@ -93,7 +93,7 @@ def load_data(file_path=DATA_FILE):
         with open(file_path, "r", encoding="utf-8") as file:
             return json.load(file)
     except FileNotFoundError:
-        return {"projects": []}
+        return {"profile": {}, "projects": []}
 
 def save_data(data, file_path=DATA_FILE):
     with open(file_path, "w", encoding="utf-8") as file:
@@ -103,7 +103,31 @@ def save_data(data, file_path=DATA_FILE):
 @app.route("/")
 def home():
     data = load_data()
-    return render_template("index.html", projects=data["projects"])
+    return render_template("profile.html", profile=data["profile"])
+
+# 履歴書ページ
+@app.route("/resume")
+def resume():
+    return render_template("resume.html")
+
+# プロジェクトページ
+@app.route("/project")
+def project():
+    return render_template("project.html")
+
+# お問い合わせページ
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        # フォームデータを取得
+        last_name = request.form["last_name"]
+        first_name = request.form["first_name"]
+        email = request.form["email"]
+        subject = request.form["subject"]
+        message = request.form["message"]
+        print(f"お問い合わせを受信: {last_name} {first_name}, {email}, 件名: {subject}, 内容: {message}")
+        return redirect(url_for("home"))
+    return render_template("contact.html")
 
 # プロジェクトの追加
 @app.route("/add", methods=["GET", "POST"])

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="profile">
+    <h2>プロフィール</h2>
+    <p><strong>名前:</strong> {{ profile.name }}</p>
+    <p><strong>住所:</strong> {{ profile.address }}</p>
+    <p><strong>技術:</strong></p>
+    <ul>
+        {% for skill in profile.skills %}
+        <li>{{ skill }}</li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

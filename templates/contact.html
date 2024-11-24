@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="contact">
+    <h2>お問い合わせ</h2>
+    <form method="POST">
+        <label for="last_name">姓:</label>
+        <input type="text" id="last_name" name="last_name" required><br>
+        <label for="first_name">名:</label>
+        <input type="text" id="first_name" name="first_name" required><br>
+        <label for="email">メールアドレス:</label>
+        <input type="email" id="email" name="email" required><br>
+        <label for="subject">件名:</label>
+        <input type="text" id="subject" name="subject" required><br>
+        <label for="message">お問い合わせ内容:</label>
+        <textarea id="message" name="message" required></textarea><br>
+        <button type="submit">送信</button>
+    </form>
+</section>
+{% endblock %}
