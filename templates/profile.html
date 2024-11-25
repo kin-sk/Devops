@@ -1,17 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 <section id="profile-section">
-    <!-- ナビゲーション -->
-    <nav>
-        <ul>
-            <li><a href="/">プロフィール</a></li>
-            <li><a href="/resume">履歴書</a></li>
-            <li><a href="/projects">プロジェクト</a></li>
-            <li><a href="/contact">お問い合わせ</a></li>
-        </ul>
-    </nav>
-
-    <!-- プロフィール -->
     <header>
         <h1>プロフィール</h1>
     </header>
@@ -24,8 +13,6 @@
             <p><strong>住所:</strong> {{ profile.address }}</p>
         </div>
     </div>
-
-    <!-- 技術セクション -->
     <div class="skills-container">
         <h2>技術</h2>
         <ul>
