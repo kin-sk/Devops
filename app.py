@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for
+from mail_utils import configure_mail, send_contact_email
 import sqlite3
 import os
 import json
 
 # Flaskアプリの初期化
 app = Flask(__name__)
+configure_mail(app)
 
 # JSONファイルのパス
 DATA_FILE = "data.json"
@@ -116,29 +118,38 @@ def project():
     return render_template("project.html")
 
 # お問い合わせページ
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        # フォームデータを取得
+        last_name = request.form["last_name"]
+        first_name = request.form["first_name"]
+        email = request.form["email"]
+        subject = request.form["subject"]
+        message = request.form["message"]
+        print(f"お問い合わせを受信: {last_name} {first_name}, {email}, 件名: {subject}, 内容: {message}")
+        return redirect(url_for("home"))
     return render_template("contact.html")
 
 @app.route("/submit_contact", methods=["POST"])
 def submit_contact():
-    # フォームからのデータを取得
-    first_name = request.form.get("first_name")
-    last_name = request.form.get("last_name")
-    email = request.form.get("email")
-    subject = request.form.get("subject")
-    message = request.form.get("message")
+     # フォームデータを辞書形式で取得
+    form_data = {
+        "first_name": request.form.get("first_name"),
+        "last_name": request.form.get("last_name"),
+        "email": request.form.get("email"),
+        "subject": request.form.get("subject"),
+        "message": request.form.get("message"),
+    }
+    # メールを送信
+    send_contact_email(app, form_data)
 
-    # データを確認 (開発用)
-    print(f"姓: {first_name}, 名: {last_name}, メール: {email}, 件名: {subject}, 内容: {message}")
-
-    # TODO: データを保存するか、メールで送信する
-
-    # ユーザーをサンクスページにリダイレクト
     return redirect(url_for("thank_you"))
 
 @app.route("/thank_you")
 def thank_you():
     return "<h1>お問い合わせありがとうございました！</h1>"
+
 
 # プロジェクトの追加
 @app.route("/add", methods=["GET", "POST"])
