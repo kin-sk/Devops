@@ -1,24 +1,23 @@
-/* ナビゲーションバーのスタイル */
+/* ナビゲーションバー */
 nav ul {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center; /* 中央揃え */
     list-style: none;
-    background-color: #333;
     padding: 10px 0;
+    background-color: #333;
     margin: 0;
 }
 
 nav ul li {
-    margin: 0 10px;
+    margin: 0 15px; /* 間隔を確保 */
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    padding: 10px 15px;
+    font-size: 18px;
+    padding: 5px 10px;
     transition: background-color 0.3s;
-    font-size: 16px;
 }
 
 nav ul li a:hover {
@@ -26,72 +25,66 @@ nav ul li a:hover {
 }
 
 /* プロフィールセクション */
-#profile-section header h1 {
-    background-color: #add8e6; /* 水色背景 */
-    padding: 15px;
+header h1 {
     text-align: center;
+    background-color: #add8e6; /* 水色 */
+    padding: 20px 0;
     margin: 0;
     font-size: 24px;
     color: #333;
 }
 
-/* プロフィールコンテナ */
+/* プロフィールのコンテナ */
 .profile-container {
     display: flex;
-    justify-content: flex-start; /* 左揃え */
-    align-items: flex-start; /* 上寄せ */
+    align-items: center; /* 縦方向の中央揃え */
+    justify-content: center; /* 水平方向の中央揃え */
+    margin: 40px auto;
     padding: 20px;
-    max-width: 900px;
-    margin: 20px auto;
+    max-width: 800px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* 写真のスタイル */
+/* 写真スタイル */
 .profile-photo {
     width: 300px;
     height: 400px;
     margin-right: 20px;
-    background-color: #eaeaea;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    background-color: #eaeaea;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .photo-placeholder {
     font-size: 16px;
     color: #777;
-    text-align: center;
 }
 
-/* 詳細情報のスタイル */
+/* 詳細情報 */
 .profile-details {
-    display: flex;
-    flex-direction: column; /* 垂直方向 */
-    justify-content: center; /* 中央揃え */
+    text-align: left;
 }
 
 .profile-details p {
     font-size: 18px;
     margin: 10px 0;
-    line-height: 1.5;
 }
 
-/* 技術セクション */
+/* 技術リスト */
 .skills-container {
     text-align: center;
     margin-top: 40px;
 }
 
 .skills-container h2 {
-    margin-bottom: 20px;
     font-size: 22px;
-    color: #333;
+    margin-bottom: 20px;
 }
 
 .skills-container ul {
@@ -101,11 +94,5 @@ nav ul li a:hover {
 
 .skills-container li {
     font-size: 18px;
-    margin: 10px 0;
-    line-height: 1.5;
-}
-
-.years {
-    font-weight: bold;
-    color: #555;
+    margin: 5px 0;
 }
