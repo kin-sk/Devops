@@ -110,7 +110,8 @@ def home():
 # 履歴書ページ
 @app.route("/resume")
 def resume():
-    return render_template("resume.html")
+    data = load_data(file_path="resume.json")
+    return render_template("resume.html", resume=data)
 
 # プロジェクトページ
 @app.route("/project")

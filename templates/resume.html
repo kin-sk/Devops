@@ -1,6 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-<section id="resume">
-    <h2>履歴書</h2>
-    <p>ここに履歴書の内容を表示します。</p>
+<section id="resume-section">
+    <h1>履歴書</h1>
+    
+    <h2>職歴</h2>
+    <ul>
+        {% for job in resume["work_experience"] %}
+        <li>
+            <strong>{{ job.period }}</strong>: {{ job.description }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>現在の経験</h2>
+    <ul>
+        {% for skill in resume["current_experience"] %}
+        <li>{{ skill }}</li>
+        {% endfor %}
+    </ul>
+</section>
 {% endblock %}
