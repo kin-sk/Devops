@@ -105,7 +105,7 @@ def save_data(data, file_path=DATA_FILE):
 @app.route("/")
 def home():
     data = load_data()
-    return render_template("profile.html", profile=data["profile"])
+    return render_template("profile2.html", profile=data["profile"])
 
 # 履歴書ページ
 @app.route("/resume")
